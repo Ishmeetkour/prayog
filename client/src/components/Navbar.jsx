@@ -3,12 +3,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom'
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-export default function index() {
+import { useState } from 'react';
+export default function Index() {
+    const [darkMode, setDarkMode] = useState(false);
     return (
         <>
-            <header className={`px-4 py-1 d-flex flex-row justify-content-between bg-body-secondary`}>
+            <header className={`px-4 py-1 d-flex flex-row justify-content-between bg-${darkMode?'dark':'body-secondary'}`}>
 
                 <div className='d-flex flex-row justify-content-center align-items-center gap-2 my-0'>
                     <img
@@ -21,17 +23,23 @@ export default function index() {
                     <Nav.Link as={Link} className='fs-4 d-none d-md-block' to='/'>Prayog</Nav.Link>
                 </div>
                 <div className='d-flex flex-row gap-2 align-items-center'>
-                    <Form.Check // prettier-ignore
-                        type="switch"
-                        id="custom-switch"
-                        label="Dark Mode"
-                        checked={false}
-                    />
-                    <Button as={Link} to='login' className=''>Login <i className="fa-solid fa-arrow-right-from-bracket"></i></Button>
+                    <a
+                        onClick={() => setDarkMode(!darkMode)}
+                        className={`btn btn-lg border-0`}
+                    >
+                        {
+                            darkMode
+                                ? <i className="fa-regular fa-lightbulb text-light"></i>
+                                : <i className="fa-solid fa-lightbulb"></i>
+                        }
+
+                    </a>
+                    <Button as={Link} to='login' className='d-none d-md-block'>Login <i className="fa-solid fa-arrow-right-from-bracket"></i></Button>
+                    <Button as={Link} to='login' className='d-md-none'><i className="fa-solid fa-arrow-right-from-bracket"></i></Button>
                 </div>
 
             </header>
-            <Navbar expand="lg" className="p-0 bg-body-tertiary sticky-top">
+            <Navbar  bg={darkMode?'dark':''} data-bs-theme={darkMode?'dark':''} expand="lg" className="p-0 bg-body-tertiary sticky-top">
                 <Container>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
