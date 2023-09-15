@@ -24,7 +24,6 @@
 }
 
 .bg {
-<<<<<<< HEAD
     height: 100%;
 }
 
@@ -32,17 +31,13 @@
     display: grid;
     place-items: center;
 }
-=======
-    height: 100vh;
+
+
+.icons {
+    font-size: 20px;
+
 }
 
-
-  .icons{
-    font-size: 20px;
-    
-  }
-  
-  .icons a {
+.icons a {
     color: #333;
-  }
->>>>>>> d0b8622eff039384625675cb82fe99d80d4794d2
+}

@@ -1,9 +1,12 @@
-import React from 'react';
+import { useContext } from 'react';
+import AppContext from '../context/context';
 export default function Footer() {
+    const states = useContext(AppContext);
+    const { darkTheme } = states;
     return (
-        <footer>
+        <footer className={darkTheme ? 'bg-black text-light' : 'bg-body-secondary'}>
 
-            <div className="row g-0 bg-body-secondary">
+            <div className="row g-0">
                 <div className="col-md-7 d-flex px-2 justify-content-between">
                     <div>
                         <h4>Contact Us</h4>
