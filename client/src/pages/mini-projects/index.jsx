@@ -1,5 +1,11 @@
-export default function index() {
+import { useContext } from 'react';
+import AppContext from '../../context/context';
+export default function MiniProjects() {
+  const states = useContext(AppContext);
+  const { darkTheme } = states;
   return (
-    <div>Mini Projects</div>
+    <main className={`bg ${darkTheme ? 'bg-dark text-light' : ''}`}>
+      Mini Projects
+    </main>
   )
 }

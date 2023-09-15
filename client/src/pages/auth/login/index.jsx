@@ -21,9 +21,9 @@ export default function Login() {
     console.log('Password:', password);
   };
   return (
-    <main className={`bg ${darkTheme ? 'bg-dark' : ''}`}>
+    <main className={`bg ${darkTheme ? 'bg-dark text-light' : ''}`}>
       <Row className='g-0'>
-        <Col md={6}  className={`p-2 p-md-5 ${darkTheme?'text-light':''} d-flex flex-column align-items-center d-md-block `}>
+        <Col md={6}  className={`p-2 p-md-5 d-flex flex-column align-items-center d-md-block `}>
           <h1 className=''>Login</h1>
           <Form className='d-flex flex-column gap-2 w-75' onSubmit={handleSubmit}>
             <Form.Group controlId="email">

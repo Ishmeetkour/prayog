@@ -1,5 +1,12 @@
-export default function index() {
+import { useContext } from 'react';
+import AppContext from '../../context/context';
+export default function About() {
+  const states = useContext(AppContext);
+  const { darkTheme } = states;
   return (
-    <div>About</div>
+    <main className={`bg ${darkTheme ? 'bg-dark text-light' : ''}`}>
+      About
+      
+    </main>
   )
 }
