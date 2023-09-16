@@ -14,15 +14,22 @@ export default function Index() {
         <>
             <Navbar bg={darkTheme ? 'dark' : 'body-secondary'} data-bs-theme={darkTheme ? 'dark' : 'light'} expand="lg" className="d-flex justify-content-between px-2 px-md-5">
 
-                <Navbar.Brand className='ms-3'>
-                    <img
+                <Navbar.Brand className='d-flex'>
+                    {darkTheme ? <img
                         alt=""
-                        src="/images/no-bg-logo.png"
-                        width="80"
+                        src="/logos/logo-dark.png"
+                        width="90"
                         height="50"
                         className="m-0 me-2"
                     />
-                    <p className='d-none d-md-inline-block fs-4'>Prayog</p>
+                        : <img
+                            alt=""
+                            src="/logos/logo-light.png"
+                            width="90"
+                            height="50"
+                            className="m-0 me-2"
+                        />}
+                    <h3 className='d-none pt-2 d-md-inline-block'>Prayog</h3>
                 </Navbar.Brand>
                 <div className='d-flex flex-row gap-2 align-items-center'>
                     <a
@@ -53,10 +60,10 @@ export default function Index() {
             </Navbar>
             <Navbar bg={darkTheme ? 'dark' : ''} data-bs-theme={darkTheme ? 'dark' : ''} expand="lg" className="p-0 bg-body-tertiary mt-0 sticky-top">
                 <Container>
-                    <Nav.Link as={Link} style={{ marginLeft: '28px' }} className={`d-md-none text-${darkTheme ? 'light' : 'dark'}`} to='/'>Prayog</Nav.Link>
+                    <Nav.Link as={Link} className={`ps-3 d-md-none text-${darkTheme ? 'light' : 'dark'}`} to='/'>Prayog</Nav.Link>
                     <Navbar.Toggle className='border-0' aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ms-auto me-auto">
+                        <Nav className="ms-auto me-auto ps-3 ps-lg-0">
                             <Nav.Link as={Link} to='/'>Home</Nav.Link>
                             <Nav.Link as={Link} to='projects'>Projects</Nav.Link>
                             <Nav.Link as={Link} to='mini-projects'>Mini Projects</Nav.Link>

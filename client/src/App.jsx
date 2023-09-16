@@ -19,7 +19,7 @@ const Profile = lazy(() => import('./pages/profile'));
 const Institute = lazy(() => import('./pages/institute'));
 import Footer from './components/Footer';
 function App() {
-  const isStudent = false;
+  const isStudent = true;
   const isInstitute = false;
 
   const studentRoutes = isStudent ? (
@@ -48,8 +48,8 @@ function App() {
             <Route exact path="/auth/register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
         </Suspense>
+        <Footer />
       </AppState>
     </BrowserRouter>
   );

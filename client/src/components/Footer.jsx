@@ -4,7 +4,7 @@ export default function Footer() {
     const states = useContext(AppContext);
     const { darkTheme } = states;
     return (
-        <footer className={darkTheme ? 'bg-black text-light' : 'bg-body-secondary'}>
+        <footer className={`bottom-0 ${darkTheme ? 'bg-black text-light' : 'bg-body-secondary'}`}>
 
             <div className="row g-0 py-1">
                 <div className="col-md-7 px-2 text-center text-md-start">
