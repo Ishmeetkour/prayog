@@ -24,7 +24,7 @@
 }
 
 .bg {
-    height: 100%;
+    height: calc(100vh - 114px);
 }
 
 .loader-container {
@@ -37,3 +37,4 @@
     font-size: 20px;
 
 }
+

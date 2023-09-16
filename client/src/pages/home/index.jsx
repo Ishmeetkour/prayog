@@ -10,7 +10,7 @@ export default function Index() {
   const states = useContext(AppContext);
   const { darkTheme } = states;
   return (
-    <body className={`bg ${darkTheme ? 'bg-dark text-light' : ''}`}>
+    <body className={` ${darkTheme ? 'bg-dark text-light' : ''}`}>
       <main>
         <Row className="g-0 overflow-hidden">
           <Col className="d-flex justify-content-center" lg={6}>
@@ -21,8 +21,8 @@ export default function Index() {
               </div>
               <div className="py-5 ps-2 h-75 text-center text-lg-start">
                 <div>
-                  <h3 className="my-1 me-1 d-inline-block">{`See What's New? `}</h3>
-                  <Nav.Link className="d-inline-block" as={Link} to='/vichar'><h4>Click Here <i className="fa-solid fa-sm fa-arrow-up-right-from-square"></i></h4></Nav.Link>
+                  <h3 className="my-1 me-1 d-inline-block">{`Want to know about us? `}</h3>
+                  <Nav.Link className="d-inline-block" as={Link} to='/about'><h4>Click Here <i className="fa-solid fa-sm fa-arrow-up-right-from-square"></i></h4></Nav.Link>
                 </div>
                 <hr />
                 <div>

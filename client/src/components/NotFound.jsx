@@ -5,7 +5,9 @@ export default function NotFound() {
   const { darkTheme } = states;
   return (
     <main className={`bg ${darkTheme ? 'bg-dark text-light' : ''}`}>
-      Page Not Found
+      <div className='h-100 d-flex justify-content-center align-items-center' >
+        <h2 className='m-0'>Page Not Found</h2>
+      </div>
     </main>
   )
 }
