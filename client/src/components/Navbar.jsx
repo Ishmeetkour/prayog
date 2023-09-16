@@ -8,20 +8,21 @@ import AppContext from '../context/context';
 export default function Index() {
 
     const states = useContext(AppContext);
-    const { darkTheme, toggleTheme, logged, toggleLogged } = states;
+    const { darkTheme, toggleTheme, logged, toggleLogged, isStudent, isInstitute } = states;
 
     return (
         <>
             <Navbar bg={darkTheme ? 'dark' : 'body-secondary'} data-bs-theme={darkTheme ? 'dark' : 'light'} expand="lg" className="d-flex justify-content-between px-2 px-md-5">
 
                 <Navbar.Brand className='d-flex'>
-                    {darkTheme ? <img
-                        alt=""
-                        src="/logos/logo-dark.png"
-                        width="90"
-                        height="50"
-                        className="m-0 me-2"
-                    />
+                    {darkTheme
+                        ? <img
+                            alt=""
+                            src="/logos/logo-dark.png"
+                            width="90"
+                            height="50"
+                            className="m-0 me-2"
+                        />
                         : <img
                             alt=""
                             src="/logos/logo-light.png"
@@ -68,7 +69,12 @@ export default function Index() {
                             <Nav.Link as={Link} to='projects'>Projects</Nav.Link>
                             <Nav.Link as={Link} to='mini-projects'>Mini Projects</Nav.Link>
                             <Nav.Link as={Link} to='workshops'>Workshops</Nav.Link>
-                            <Nav.Link as={Link} to='vichar'>Vichar</Nav.Link>
+                            {
+                                isStudent && <Nav.Link as={Link} to='profile/student'>Profile</Nav.Link>
+                            }
+                            {
+                                isInstitute && <Nav.Link as={Link} to='profile/institute'>Profile</Nav.Link>
+                            }
                             <Nav.Link as={Link} to='about'>About</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

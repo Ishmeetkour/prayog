@@ -6,16 +6,18 @@ const theme = localStorage.getItem('darkTheme') ?? 'false';
 const AppState = (props) => {
     const [logged, setLogged] = useState(false);
     const [darkTheme, setDarkTheme] = useState(theme === 'true');
+    const [isStudent, setIsStudent] = useState(false);
+    const [isInstitute, setIsInstitute] = useState(false)
     const toggleTheme = () => {
-        localStorage.setItem('darkTheme',`${!darkTheme}`);
+        localStorage.setItem('darkTheme', `${!darkTheme}`);
         setDarkTheme(!darkTheme);
     }
-    const toggleLogged = ()=>{
+    const toggleLogged = () => {
         setLogged(!logged);
     }
 
     return (
-        <AppContext.Provider value={{ darkTheme, toggleTheme,logged, toggleLogged }}>
+        <AppContext.Provider value={{ darkTheme, toggleTheme, logged, toggleLogged, isStudent, isInstitute, setIsStudent, setIsInstitute }}>
             {props.children}
         </AppContext.Provider>
     )
