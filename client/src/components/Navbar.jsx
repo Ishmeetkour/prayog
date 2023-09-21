@@ -8,7 +8,7 @@ import AppContext from '../context/context';
 export default function Index() {
 
     const states = useContext(AppContext);
-    const { darkTheme, toggleTheme, logged, toggleLogged, isStudent, isInstitute } = states;
+    const { darkTheme, toggleTheme, logged, toggleLogged } = states;
 
     return (
         <>
@@ -67,14 +67,14 @@ export default function Index() {
                         <Nav className="ms-auto me-auto ps-3 ps-lg-0">
                             <Nav.Link as={Link} to='/'>Home</Nav.Link>
                             <Nav.Link as={Link} to='projects'>Projects</Nav.Link>
-                            <Nav.Link as={Link} to='mini-projects'>Mini Projects</Nav.Link>
                             <Nav.Link as={Link} to='workshops'>Workshops</Nav.Link>
+                            {/* {
+                                logged && <Nav.Link as={Link} to='profile'>Profile</Nav.Link>
+                            } */}
                             {
-                                isStudent && <Nav.Link as={Link} to='profile/student'>Profile</Nav.Link>
+                                logged && <Nav.Link as={Link} to='community'>Community</Nav.Link>
                             }
-                            {
-                                isInstitute && <Nav.Link as={Link} to='profile/institute'>Profile</Nav.Link>
-                            }
+
                             <Nav.Link as={Link} to='about'>About</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
