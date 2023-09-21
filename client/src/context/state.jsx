@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 
 const theme = localStorage.getItem('darkTheme') ?? 'false';
 const AppState = (props) => {
-    const [logged, setLogged] = useState(false);
+    const [logged, setLogged] = useState(true);
     const [darkTheme, setDarkTheme] = useState(theme === 'true');
-    const [isStudent, setIsStudent] = useState(false);
-    const [isInstitute, setIsInstitute] = useState(false)
     const toggleTheme = () => {
         localStorage.setItem('darkTheme', `${!darkTheme}`);
         setDarkTheme(!darkTheme);
@@ -17,7 +15,7 @@ const AppState = (props) => {
     }
 
     return (
-        <AppContext.Provider value={{ darkTheme, toggleTheme, logged, toggleLogged, isStudent, isInstitute, setIsStudent, setIsInstitute }}>
+        <AppContext.Provider value={{ darkTheme, toggleTheme, logged, toggleLogged }}>
             {props.children}
         </AppContext.Provider>
     )

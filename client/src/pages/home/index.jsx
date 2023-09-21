@@ -31,11 +31,6 @@ export default function Index() {
                 </div>
                 <hr />
                 <div>
-                  <h3 className="my-1 me-1 d-inline-block">{`Searching for a Mini Project? `}</h3>
-                  <Nav.Link className="d-inline-block" as={Link} to='/mini-projects'><h4>Click Here <i className="fa-solid fa-sm fa-arrow-up-right-from-square"></i></h4></Nav.Link>
-                </div>
-                <hr />
-                <div>
                   <h3 className="my-1 me-1 d-inline-block">{`Finding a Workshop?`}</h3>
                   <Nav.Link className="d-inline-block" as={Link} to='/workshops'><h4>Click Here <i className="fa-solid fa-sm fa-arrow-up-right-from-square"></i></h4></Nav.Link>
                 </div>

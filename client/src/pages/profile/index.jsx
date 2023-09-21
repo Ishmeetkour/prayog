@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import AppContext from '../../../context/context';
+import AppContext from '../../context/context';
 export default function Student() {
   const states = useContext(AppContext);
   const { darkTheme } = states;
