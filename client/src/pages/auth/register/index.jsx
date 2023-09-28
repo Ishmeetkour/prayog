@@ -1,103 +1,104 @@
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'
-import AppContext from '../../../context/context';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
-export default function Index() {
-  const states = useContext(AppContext);
-  const { darkTheme } = states;
+// src/components/Registration.js
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [dob, setDob] = useState('');
-  const [collegeName, setCollegeName] = useState('');
-  const [degree, setDegree] = useState('B Tech'); // Default degree
+const Register = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [college, setCollege] = useState('');
+    const [degree, setDegree] = useState('');
+    const [rollNumber, setRollNumber] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here, you can handle the registration logic
-    // For this example, we'll just display the submitted data
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Date of Birth:', dob);
-    console.log('College Name:', collegeName);
-    console.log('Degree:', degree);
-  };
-  return (
-    <main className={`bg ${darkTheme ? 'bg-dark text-light' : ''}`}>
-      <Row className='g-0'>
-        <Col className={`p-2 p-md-5 d-flex flex-column align-items-center d-md-block `} md={6} >
-          <h1>Registration</h1>
-          <Form className='d-flex flex-column gap-2 w-75'  onSubmit={handleSubmit}>
-            <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </Form.Group>
+    const handleRegistration = () => {
+        // Implement your registration logic here
+    };
 
-            <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </Form.Group>
+    return (
+        <div className="min-h-screen bg-lightTheme-secondary dark:bg-darkTheme-secondary pt-12">
+            <div className="bg-white p-5 rounded shadow-md w-80 md:w-96 mx-auto">
+                <h2 className="text-2xl font-semibold mb-4">Registration</h2>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                        Name
+                    </label>
+                    <input
+                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        type="text"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter your name"
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rollNumber">
+                        Roll Number
+                    </label>
+                    <input
+                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        type="text"
+                        id="rollNumber"
+                        value={rollNumber}
+                        onChange={(e) => setRollNumber(e.target.value)}
+                        placeholder="Enter your roll number"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                        Email
+                    </label>
+                    <input
+                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="college">
+                        College
+                    </label>
+                    <select
+                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        id="college"
+                        value={college}
+                        onChange={(e) => setCollege(e.target.value)}
+                    >
+                        <option value="">Select your college</option>
+                        <option value="college1">College 1</option>
+                        <option value="college2">College 2</option>
+                        {/* Add more college options here */}
+                    </select>
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="degree">
+                        Degree
+                    </label>
+                    <select
+                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        id="degree"
+                        value={degree}
+                        onChange={(e) => setDegree(e.target.value)}
+                    >
+                        <option value="">Select your degree</option>
+                        <option value="undergraduate">Undergraduate</option>
+                        <option value="postgraduate">Postgraduate</option>
+                        <option value="diploma">Diploma</option>
+                    </select>
+                </div>
 
-            <Form.Group controlId="dob">
-              <Form.Label>Date of Birth</Form.Label>
-              <Form.Control
-                type="date"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
-                required
-              />
-            </Form.Group>
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={handleRegistration}
+                >
+                    Register
+                </button>
+                <p className='mt-3'>Already Registered? <Link to='/auth/login'>Login</Link></p>
+            </div>
+        </div>
+    );
+};
 
-            <Form.Group controlId="collegeName">
-              <Form.Label>College Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your college name"
-                value={collegeName}
-                onChange={(e) => setCollegeName(e.target.value)}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="degree">
-              <Form.Label>Degree</Form.Label>
-              <Form.Control
-                as="select"
-                value={degree}
-                onChange={(e) => setDegree(e.target.value)}
-              >
-                <option value="ug">Under Graduate</option>
-                <option value="pg">Post Graduate</option>
-                <option value="diploma">Diploma</option>
-                <option value="certificate">Certificate</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Button className='my-2' variant="primary" type="submit">
-              Register
-            </Button>
-            <p>Already have an account <Nav.Link className={`d-inline-block  ${darkTheme?'':'text-black'} fw-bold`} as={Link} to='/auth/login'>Login</Nav.Link></p>
-          </Form>
-        </Col>
-        <Col md={6}>
-        </Col>
-      </Row>
-    </main>
-  )
-}
+export default Register;

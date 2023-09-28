@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AppState from './context/state';
+import { Provider } from 'react-redux'
+import store from './redux/store.js';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AppState>
+    <Provider store={store}>
       <App />
-    </AppState>
+    </Provider>
   </React.StrictMode>,
 )

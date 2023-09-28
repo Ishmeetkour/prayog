@@ -1,40 +1,4 @@
 @font-face {
-    font-family: arya;
-    src: url('fonts/Arya-Regular.ttf');
+    font-family: sura;
+    src: url('/fonts/Sura-Regular.ttf');
 }
-
-.head-quote h1 {
-    font-family: arya;
-}
-
-.head-quote {
-
-    color: black;
-    background-color: crimson;
-    margin-top: -30px;
-    border-radius: 0 0 50px 50px;
-    display: inline-block;
-}
-
-.centered-div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.bg {
-    height: calc(100vh - 114px);
-}
-
-.loader-container {
-    display: grid;
-    place-items: center;
-}
-
-
-.icons {
-    font-size: 20px;
-
-}
-
