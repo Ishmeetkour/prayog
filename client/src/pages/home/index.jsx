@@ -1,156 +1,55 @@
-import { useContext } from "react"
-import AppContext from "../../context/context"
-import Translate from '../../components/Translate'
-import Scale from '../../components/Scale'
-import Row from 'react-bootstrap/Row'
-import Nav from 'react-bootstrap/Nav'
-import Col from 'react-bootstrap/Col'
-import { Link } from "react-router-dom"
-export default function Index() {
-  const states = useContext(AppContext);
-  const { darkTheme } = states;
+import {FaArrowRightLong} from 'react-icons/fa6';
+const Home = () => {
+
   return (
-    <body className={` ${darkTheme ? 'bg-dark text-light' : ''}`}>
-      <main>
-        <Row className="g-0 overflow-hidden">
-          <Col className="d-flex justify-content-center" lg={6}>
-            <section className="py-3 text-center text-md-start">
-              <div className="head-quote text-center p-5 shadow">
-                <Scale fromScale={0.5} toScale={1}><h1 className="display-3 mb-0">सर्वस्य लोचनं शास्त्रं</h1></Scale>
-                <p className="mt-1 fs-5">Science is the only eye</p>
-              </div>
-              <div className="py-5 ps-2 h-75 text-center text-lg-start">
-                <div>
-                  <h3 className="my-1 me-1 d-inline-block">{`Want to know about us? `}</h3>
-                  <Nav.Link className="d-inline-block" as={Link} to='/about'><h4>Click Here <i className="fa-solid fa-sm fa-arrow-up-right-from-square"></i></h4></Nav.Link>
-                </div>
-                <hr />
-                <div>
-                  <h3 className="my-1 me-1 d-inline-block">{`Searching for a Project? `}</h3>
-                  <Nav.Link className="d-inline-block" as={Link} to='/projects'><h4>Click Here <i className="fa-solid fa-sm fa-arrow-up-right-from-square"></i></h4></Nav.Link>
-                </div>
-                <hr />
-                <div>
-                  <h3 className="my-1 me-1 d-inline-block">{`Finding a Workshop?`}</h3>
-                  <Nav.Link className="d-inline-block" as={Link} to='/workshops'><h4>Click Here <i className="fa-solid fa-sm fa-arrow-up-right-from-square"></i></h4></Nav.Link>
-                </div>
-                <hr />
-              </div>
-            </section>
-
-          </Col>
-          <Col className="mt-2 " lg={6}>
-            <Translate fromX={300} >
-              <section className="pt-3 d-none d-md-flex flex-column justify-content-center">
-                <h1 className="text-center text-lg-start">Prayog</h1>
-                <div className="p-1 w-100 fs-4 text-center text-lg-start">
-                  <>
-                    <strong>Student Project Database</strong>
-                    <p>Prayog is a platform where university students can submit their academic projects, creating a central database for easy access.</p>
-                  </>
-                  <>
-                    <strong>Open Access Inspiration</strong>
-                    <p>Prayog offers open access to these projects, inspiring students, educators, and professionals alike.</p>
-                  </>
-                  <>
-                    <strong>Efficient Search and Filters</strong>
-                    <p>Prayog provides robust search and filter options for precise project discovery.</p>
-                  </>
-                  <>
-                    <strong>Community Interaction</strong>
-                    <p>Prayog encourages engagement through comments, ratings, and forums, fostering a supportive academic community.</p>
-                  </>
-                </div>
-              </section>
-            </Translate>
-            <section className="d-md-none">
-              <h1 className="text-center">Prayog</h1>
-              <div className="p-1 fs-4 text-center">
-                <>
-                  <strong>Student Project Database</strong>
-                  <p>Prayog is a platform where university students can submit their academic projects, creating a central database for easy access.</p>
-                </>
-                <>
-                  <strong>Open Access Inspiration</strong>
-                  <p>Prayog offers open access to these projects, inspiring students, educators, and professionals alike.</p>
-                </>
-                <>
-                  <strong>Efficient Search and Filters</strong>
-                  <p>Prayog provides robust search and filter options for precise project discovery.</p>
-                </>
-                <>
-                  <strong>Community Interaction</strong>
-                  <p>Prayog encourages engagement through comments, ratings, and forums, fostering a supportive academic community.</p>
-                </>
-              </div>
-            </section>
-          </Col>
-        </Row>
-      </main>
-      <br />
-      <div className="container overflow-hidden">
-        <section>
-          <Row className="g-0">
-            <Col md={6}>
-              <Translate fromX={100}>
-                <img className="w-100" src="/images/languages.png" alt="" />
-                <ul className="fs-5">
-                  <li>Discover, upload, and share your programming projects with fellow students.</li>
-                  <li>Showcase your coding prowess - share your projects, inspire others.</li>
-                  <li>Explore a world of programming languages, download and learn from your peers.</li>
-                  <li>Empower your coding journey - contribute and download innovative projects.</li>
-                </ul>
-                <hr />
-              </Translate>
-            </Col>
-          </Row>
-          <Row className="g-0">
-            <Col md={6}></Col>
-            <Col md={6}>
-              <Translate fromX={-100}>
-                <img className="w-100" src="/images/mechanical.png" alt="" />
-                <ul className="fs-5">
-                  <li>Explore a world of mechanical engineering projects created by your peers.</li>
-                  <li>Showcase your mechanical design and innovation - share your projects for inspiration.</li>
-                  <li>Discover solutions to real-world challenges - download and learn from fellow students.</li>
-                  <li>Collaborate and contribute to the world of mechanical engineering innovation.</li>
-                </ul>
-                <hr />
-              </Translate>
-            </Col>
-          </Row>
-          <Row className="g-0">
-
-            <Col md={6}>
-              <Translate fromX={100}>
-                <img className="w-100" src="/images/electronics.png" alt="" />
-                <ul className="fs-5">
-                  <li>Explore a world of electronics projects created by your fellow students.</li>
-                  <li>Showcase your electronic design and innovation - share your projects for inspiration.</li>
-                  <li>Discover cutting-edge solutions - download and learn from the electronics community.</li>
-                  <li>Collaborate and contribute to the world of electronic engineering innovation.</li>
-                </ul>
-                <hr />
-              </Translate>
-            </Col>
-          </Row>
-          <Row className="g-0">
-            <Col md={6}></Col>
-            <Col md={6}>
-              <Translate fromX={-100}>
-                <img className="w-100" src="/images/workshops.png" alt="" />
-                <ul className="fs-5">
-                  <li>Explore past seminars and workshops to access valuable insights and resources.</li>
-                  <li>Stay updated on upcoming events to plan your participation and learning journey.</li>
-                  <li>Connect with experts and peers in various fields through our {`college's`} events.</li>
-                  <li>Enhance your knowledge and skills by attending both past and future seminars.</li>
-                </ul>
-                <hr />
-              </Translate>
-            </Col>
-          </Row>
-        </section>
-      </div>
-    </body>
+    <div className="bg-lightTheme-secondary text-lightTheme-text dark:bg-darkTheme-secondary dark:text-darkTheme-text">
+      <section className="grid md:grid-cols-2 pt-5 px-2">
+        <div className="my-auto">
+          <div className="text-xl text-center md:text-5xl font-[sura]">
+            <p>अनेकसंशयोच्छेदि, परोक्षार्थस्य दर्शकम् ।</p>
+            <p>सर्वस्य लोचनं शास्त्रं, यस्य नास्त्यन्ध एव सः ॥</p>
+          </div>
+          <div className="flex justify-center">
+            <span className="border-b-4 border-black my-5 w-40 flex"></span>
+          </div>
+          <div className="text-lg text-center md:text-2xl font-serif">
+            <p>It blasts many doubts, foresees what is not obvious</p>
+            <p>Science is the eye of everyone, one who has not got it, is like a blind</p>
+          </div>
+        </div>
+        <div className="flex px-10 py-7 md:px-20 md:py-10 justify-center items-center">
+          <img className="hidden md:flex"  src="/svg/innovation.svg" alt="innovation" />
+          <img className="md:hidden" src="/svg/learning.svg" alt="learning" />
+        </div>
+      </section>
+      <section className="p-5">
+        <div className="text-center font-semibold"> 
+          <p className="text-red-700 dark:text-yellow-500  m-0 text-lg">Stats</p>
+          <p className="text-red-700 dark:text-yellow-500 m-0 text-2xl">Platform Made for Students by Students</p>
+        </div>
+        <div className="mt-5 grid md:grid-cols-3 gap-2 text-lg">
+          <div className='shadow py-4 border-s-2 border-red-700 dark:border-yellow-500 ps-2 '>
+            <p className="text-red-700 dark:text-yellow-500 font-semibold">1k+ Institutes</p>
+            <p>An ever-growing number of institutes pan India.</p>
+          </div>
+          <div className='shadow py-4 border-s-2 border-red-700 dark:border-yellow-500 ps-2 '>
+            <p className="text-red-700 dark:text-yellow-500 font-semibold">2.5k+ Students</p>
+            <p>Students Enrolled for Prayog Initiative.</p>
+          </div>
+          <div className='shadow py-4 border-s-2 border-red-700 dark:border-yellow-500 ps-2 '>
+            <p className="text-red-700 dark:text-yellow-500 font-semibold">5k+ Projects</p>
+            <p>A Huge Database of Projects on Various Subjects</p>
+          </div>
+        </div>
+        <div className="flex mt-5 justify-center">
+          <button 
+          className=" flex gap-2 items-center font-medium text-base p-1 hover:rounded border-b-2 border-purple-700 hover:bg-purple-700 transition-colors">
+            Get Started <FaArrowRightLong/>
+            </button>
+        </div>
+      </section>
+    </div>
   )
 }
+
+export default Home

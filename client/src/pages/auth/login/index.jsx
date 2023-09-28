@@ -1,64 +1,58 @@
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-// import Container from 'react-bootstrap/Container'
-import { useContext, useState } from 'react';
-import AppContext from '../../../context/context';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Link } from 'react-router-dom'
-export default function Login() {
-  const states = useContext(AppContext);
-  const { darkTheme } = states;
+// src/components/Login.js
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux"
+import { login } from "../../../redux/userSlice";
+const Login = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here, you can add your authentication logic
-    // For this example, we'll just display the submitted data
-    console.log('Email:', email);
-    console.log('Password:', password);
+  const handleLogin = () => {
+    console.log("trying...")
+    dispatch(login({ email, password }))
   };
+
   return (
-    <main className={`bg ${darkTheme ? 'bg-dark text-light' : ''}`}>
-      <Row className='g-0'>
-        <Col md={6}  className={`p-2 p-md-5 d-flex flex-column align-items-center d-md-block `}>
-          <h1 className=''>Login</h1>
-          <Form className='d-flex flex-column gap-2 w-75' onSubmit={handleSubmit}>
-            <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </Form.Group>
+    <div className="min-h-screen  bg-lightTheme-secondary dark:bg-darkTheme-secondary pt-32 ">
+      <div className=" p-5 rounded shadow-md w-80 md:w-96 bg-white mx-auto">
+        <h2 className="text-2xl font-semibold mb-4">Login</h2>
+        <div className="mb-4">
+          <label className="blocktext-sm font-bold mb-2" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-sm font-bold mb-2" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
+        </div>
+        <button
+          className="bg-blue-500 text-white hover:bg-blue-700 font-bold py-2 px-4 rounded"
+          onClick={handleLogin}
+        >
+          Login
+        </button>
+        <p className='mt-3'>New to Prayog? <Link to='/auth/register'>Register</Link></p>
+      </div>
+    </div>
+  );
+};
 
-            <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
-
-            <Button  className='my-2' variant="primary" type="submit">
-              Login
-            </Button>
-            <p className='text-center text-md-start'>New to Prayog? <Nav.Link className={`d-inline-block  ${darkTheme?'':'text-black'} fw-bold`} as={Link} to='/auth/register'>Create Account</Nav.Link></p>
-          </Form>
-        </Col>
-        <Col md={6}>
-        </Col>
-      </Row>
-    </main>
-  )
-}
-
-
+export default Login;

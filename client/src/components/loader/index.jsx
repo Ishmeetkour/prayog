@@ -1,12 +1,7 @@
 import { Dna } from 'react-loader-spinner';
-import { useContext } from 'react';
-import AppContext from '../context/context';
-export default function Loading() {
-
-    const states = useContext(AppContext);
-    const { darkTheme } = states;
+export default function Loader() {
     return (
-        <main className={`bg loader-container ${darkTheme?'bg-dark':''}`}>
+        <div className='min-h-screen bg-lightTheme-secondary text-lightTheme-text dark:bg-darkTheme-secondary dark:text-darkTheme-text flex justify-center items-center'>
             <Dna
                 visible={true}
                 height="80"
@@ -16,6 +11,6 @@ export default function Loading() {
                 wrapperClass="dna-wrapper"
 
             />
-        </main>
+        </div>
     )
 }
