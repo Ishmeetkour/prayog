@@ -12,9 +12,9 @@ With Prayog, students can easily submit their college or university projects and
 
 - **Project Discovery:** Users can easily search and browse through a wide variety of projects submitted by students.
 
-- **Student Authentication:** Validated registration and authentication system for students, ensuring data privacy.
+- **Workshops:** Users can find any future or past workshops.
 
-- **Comments and Feedback:** Users can leave comments and provide feedback on projects.
+- **Student Authentication:** Validated registration and authentication system for students, ensuring data privacy.
 
 - **Institute Panel:** Institute can manage student accounts, projects, and ensure the platform's integrity.
 
