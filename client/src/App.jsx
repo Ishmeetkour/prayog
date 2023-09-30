@@ -8,18 +8,26 @@ const Login = lazy(() => import('./pages/auth/login'));
 const Register = lazy(() => import('./pages/auth/register'));
 const Projects = lazy(() => import('./pages/projects'));
 const Workshops = lazy(() => import('./pages/workshops'));
-const View = lazy(()=>import('./pages/projects/view')) ;
+const ProjectsView = lazy(()=>import('./pages/projects/view')) ;
+const WorkshopsView = lazy(()=>import('./pages/workshops/view')) ;
 const Project = lazy(()=>import('./pages/projects/project')) ;
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Loader from './components/loader';
 import { useSelector } from 'react-redux';
+import NotFound from './components/not-found';
 
 
 function App() {
   const logged = useSelector(state=>state.user.logged);
   const profileRoute = logged ? (
     <Route exact path="/profile" element={<User />} />
+  ) : null;
+  const loginRoute = !logged ? (
+    <Route exact path="/auth/login" element={<Login />} /> 
+  ) : null;
+  const registerRoute = !logged ? (
+    <Route exact path="/auth/register" element={<Register />} />
   ) : null;
   return (
     <BrowserRouter>
@@ -31,10 +39,12 @@ function App() {
           <Route exact path="/projects" element={<Projects />} />
           <Route exact path="/workshops" element={<Workshops />} />
           {profileRoute}
-          <Route exact path="/auth/login" element={<Login />} />
-          <Route exact path="/auth/register" element={<Register />} />
-          <Route exact path="/projects/view" element={<View />} />
+          {loginRoute}
+          {registerRoute}
+          <Route exact path="/projects/view" element={<ProjectsView />} />
+          <Route exact path="/workshops/view" element={<WorkshopsView />} />
           <Route exact path="/projects/:id" element={<Project />} />
+          <Route exact path="/*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <Footer />

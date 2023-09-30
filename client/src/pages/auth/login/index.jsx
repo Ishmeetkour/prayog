@@ -1,16 +1,18 @@
 // src/components/Login.js
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 import { login } from "../../../redux/userSlice";
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     console.log("trying...")
     dispatch(login({ email, password }))
+    navigate('/');
   };
 
   return (

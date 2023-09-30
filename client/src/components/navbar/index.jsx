@@ -30,7 +30,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="sticky top-0 shadow-lg bg-lightTheme-primary text-lightTheme-text dark:bg-darkTheme-primary dark:text-white flex justify-between items-center py-3 px-3 md:px-10">
+        <nav className="sticky z-20 top-0 shadow-lg bg-lightTheme-primary text-lightTheme-text dark:bg-darkTheme-primary dark:text-white flex justify-between items-center py-3 px-3 md:px-10">
             <div className="container mx-auto">
                 <div className="flex justify-between items-center">
                     <Link
@@ -50,6 +50,7 @@ const Navbar = () => {
                         <p className=" flex text-3xl items-center">Prayog</p>
                     </Link>
                     <div className="hidden md:flex items-center space-x-4 text-lg font-semibold">
+                        <Link to='/'>Home</Link>
                         <Link to='/projects'>Projects</Link>
                         <Link to='/workshops'>Workshops</Link>
                         <Link to='/about'>About</Link>
@@ -114,6 +115,7 @@ const Navbar = () => {
                 </div>
                 {isOpen && (
                     <div className="md:hidden flex flex-col gap-3 pt-3 text-lg font-semibold">
+                        <Link to='/'>Home</Link>
                         <Link to='/projects'>Projects</Link>
                         <Link to='/workshops'>Workshops</Link>
                         <Link to='/about'>About</Link>
