@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 const Home = lazy(() => import('./pages/home'));
 const About = lazy(() => import('./pages/about'));
-const User = lazy(() => import('./pages/user'));
 const Login = lazy(() => import('./pages/auth/login'));
 const Register = lazy(() => import('./pages/auth/register'));
 const Projects = lazy(() => import('./pages/projects'));
@@ -16,12 +15,17 @@ import Footer from './components/footer';
 import Loader from './components/loader';
 import { useSelector } from 'react-redux';
 import NotFound from './components/not-found';
+import Student from './pages/user/student';
+import Institute from './pages/user/institute';
 
 
 function App() {
   const logged = useSelector(state=>state.user.logged);
+  const type = useSelector(state=>state.user.type);
   const profileRoute = logged ? (
-    <Route exact path="/profile" element={<User />} />
+    type === 'student'
+    ? <Route exact path="/profile" element={<Student/>} />
+    : <Route exact path="/profile" element={<Institute />} />
   ) : null;
   const loginRoute = !logged ? (
     <Route exact path="/auth/login" element={<Login />} /> 

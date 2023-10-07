@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        logged: false,
+        logged: true,
+        type: 'student',
         name: 'Divyanshu Naugai',
         college: 'BTKIT Dwarahat',
     },
