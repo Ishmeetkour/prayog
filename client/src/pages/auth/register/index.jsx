@@ -14,15 +14,20 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen bg-lightTheme-secondary dark:bg-darkTheme-secondary pt-12">
-            <div className="bg-white p-5 rounded shadow-md w-80 md:w-96 mx-auto">
-                <h2 className="text-2xl font-semibold mb-4">Registration</h2>
+        <div className="min-h-screen bg-lightTheme-secondary dark:bg-darkTheme-secondary dark:text-darkTheme-text grid lg:grid-cols-2 ">
+
+            <div className='hidden lg:flex items-center px-20'>
+                <img className='' src="/svg/register.svg" alt="Logo" />
+            </div>
+
+            <div className="w-3/4 h-full mx-auto flex flex-col justify-center lg:justify-start lg:pt-10">
+                <h2 className="text-4xl font-semibold mb-4">Registration</h2>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                    <label className="block text-sm font-bold mb-2" htmlFor="name">
                         Name
                     </label>
                     <input
-                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
                         type="text"
                         id="name"
                         value={name}
@@ -31,11 +36,11 @@ const Register = () => {
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rollNumber">
+                    <label className="block text-sm font-bold mb-2" htmlFor="rollNumber">
                         Roll Number
                     </label>
                     <input
-                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
                         type="text"
                         id="rollNumber"
                         value={rollNumber}
@@ -44,11 +49,11 @@ const Register = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                    <label className="block text-sm font-bold mb-2" htmlFor="email">
                         Email
                     </label>
                     <input
-                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
                         type="email"
                         id="email"
                         value={email}
@@ -57,11 +62,11 @@ const Register = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="college">
+                    <label className="block text-sm font-bold mb-2" htmlFor="college">
                         College
                     </label>
                     <select
-                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
                         id="college"
                         value={college}
                         onChange={(e) => setCollege(e.target.value)}
@@ -73,11 +78,11 @@ const Register = () => {
                     </select>
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="degree">
+                    <label className="block text-sm font-bold mb-2" htmlFor="degree">
                         Degree
                     </label>
                     <select
-                        className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
                         id="degree"
                         value={degree}
                         onChange={(e) => setDegree(e.target.value)}

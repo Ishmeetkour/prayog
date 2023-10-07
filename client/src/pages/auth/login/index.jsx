@@ -16,15 +16,20 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen  bg-lightTheme-secondary dark:bg-darkTheme-secondary pt-32 ">
-      <div className=" p-5 rounded shadow-md w-80 md:w-96 bg-white mx-auto">
-        <h2 className="text-2xl font-semibold mb-4">Login</h2>
+    <div className='min-h-screen grid lg:grid-cols-2 bg-lightTheme-secondary dark:bg-darkTheme-secondary dark:text-darkTheme-text'>
+      
+      <div className='hidden lg:flex px-20'>
+        <img className='' src="/svg/login.svg" alt="Logo" />
+      </div>
+
+      <div className=" w-3/4 h-full mx-auto flex flex-col justify-center lg:justify-start lg:pt-40">
+        <h2 className="text-4xl font-semibold mb-4">Login</h2>
         <div className="mb-4">
-          <label className="blocktext-sm font-bold mb-2" htmlFor="email">
+          <label className="block text-sm font-bold mb-2" htmlFor="email">
             Email
           </label>
           <input
-            className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+            className="text-black w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
             type="email"
             id="email"
             value={email}
@@ -37,7 +42,7 @@ const Login = () => {
             Password
           </label>
           <input
-            className="w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
+            className="text-black w-full border rounded px-3 py-2 outline-none focus:border-blue-500"
             type="password"
             id="password"
             value={password}
