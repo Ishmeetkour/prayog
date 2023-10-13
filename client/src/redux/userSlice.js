@@ -3,10 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        logged: true,
-        type: 'student',
-        name: 'Divyanshu Naugai',
-        college: 'BTKIT Dwarahat',
+        logged: false,
+        details: {
+            type: 'student',
+            name: 'Divyanshu Naugai',
+            college: 'BTKIT Dwarahat',
+            degree:'Under Graduation',
+            speciality:'Electronics',
+            about:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero dicta reprehenderit libero consectetur, asperiores ea delectus omnis cupiditate accusantium, rem expedita aliquam quia? Consectetur eligendi eius libero at laudantium autem.'
+        }
     },
     reducers: {
         login: (state, action) => {

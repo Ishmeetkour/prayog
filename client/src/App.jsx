@@ -7,36 +7,54 @@ const Login = lazy(() => import('./pages/auth/login'));
 const Register = lazy(() => import('./pages/auth/register'));
 const Projects = lazy(() => import('./pages/projects'));
 const Workshops = lazy(() => import('./pages/workshops'));
-const ProjectsView = lazy(()=>import('./pages/projects/view')) ;
-const WorkshopsView = lazy(()=>import('./pages/workshops/view')) ;
-const Project = lazy(()=>import('./pages/projects/project')) ;
+const ProjectsView = lazy(() => import('./pages/projects/view'));
+const WorkshopsView = lazy(() => import('./pages/workshops/view'));
+const Project = lazy(() => import('./pages/projects/project'));
+const MyProjects = lazy(() => import('./pages/user/student/projects'));
+const Student = lazy(() => import('./pages/user/student'));
+const Institute = lazy(() => import('./pages/user/institute'));
+const NotFound = lazy(() => import('./components/not-found'));
+const MyWorkshops = lazy(() => import('./pages/user/institute/workshops'));
+const StudentDashboard = lazy(() => import('./pages/user/student/dashboard'));
+const InstituteDashboard = lazy(() => import('./pages/user/institute/dashboard'));
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Loader from './components/loader';
 import { useSelector } from 'react-redux';
-import NotFound from './components/not-found';
-import Student from './pages/user/student';
-import Institute from './pages/user/institute';
 
 
 function App() {
-  const logged = useSelector(state=>state.user.logged);
-  const type = useSelector(state=>state.user.type);
+  const logged = useSelector(state => state.user.logged);
+  const type = useSelector(state => state.user.details.type);
   const profileRoute = logged ? (
     type === 'student'
-    ? <Route exact path="/profile" element={<Student/>} />
-    : <Route exact path="/profile" element={<Institute />} />
+      ? <Route exact path="/profile"  >
+
+        <Route exact index={true} element={<Student />} />
+        <Route exact path="projects" element={<MyProjects />} />
+        <Route exact path="dashboard" element={<StudentDashboard />} />
+
+      </Route>
+      : <Route exact path="/profile"  >
+
+        <Route exact index={true} element={<Institute />} />
+        <Route exact path="workshops" element={<MyWorkshops />} />
+        <Route exact path="dashboard" element={<InstituteDashboard />} />
+
+      </Route>
   ) : null;
+
   const loginRoute = !logged ? (
-    <Route exact path="/auth/login" element={<Login />} /> 
+    <Route exact path="/auth/login" element={<Login />} />
   ) : null;
   const registerRoute = !logged ? (
     <Route exact path="/auth/register" element={<Register />} />
   ) : null;
+
   return (
     <BrowserRouter>
       <Navbar />
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />

@@ -50,22 +50,22 @@ const Navbar = () => {
                         <p className=" flex text-3xl items-center">Prayog</p>
                     </Link>
                     <div className="hidden md:flex items-center space-x-4 text-lg font-semibold">
-                        <Link to='/'>Home</Link>
-                        <Link to='/projects'>Projects</Link>
-                        <Link to='/workshops'>Workshops</Link>
-                        <Link to='/about'>About</Link>
-                        {logged ? <Link to='/profile'>Profile</Link> : null}
+                        <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/'>Home</Link>
+                        <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/projects'>Projects</Link>
+                        <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/workshops'>Workshops</Link>
+                        <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/about'>About</Link>
+                        {logged ? <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/profile'>Profile</Link> : null}
                         {
                             logged
                                 ? <Link
                                     onClick={handelLogout}
                                     to='/'
-                                    className="border-2 px-2 py-1 rounded-lg flex items-center hover:scale-105">
+                                    className='flex gap-1 items-center hover:bg-red-500 py-1 px-2 rounded-md '>
                                     <p className="m-0 hidden md:inline">Logout</p><BiLogOut size={25} />
                                 </Link>
                                 : <Link
                                     to='auth/login'
-                                    className="border-2 px-2 py-1 rounded-lg flex items-center hover:scale-105">
+                                    className='flex gap-1 items-center hover:bg-green-500 py-1 px-2 rounded-md '>
                                     <p className="m-0 hidden md:inline">Login </p><BiLogIn size={25} />
                                 </Link>
                         }
