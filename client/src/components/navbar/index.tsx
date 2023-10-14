@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { toggleTheme } from "../../redux/themeSlice";
 import { useEffect, useState } from "react";
 import { logout } from "../../redux/userSlice";
+import { RootState } from "../../redux/store";
 const Navbar = () => {
-    const darkTheme = useSelector(state => state.theme.darkTheme);
-    const logged = useSelector(state => state.user.logged)
+    const darkTheme = useSelector((state:RootState) => state.theme.darkTheme);
+    const logged = useSelector((state:RootState) => state.user.logged)
     const dispatch = useDispatch();
     const toggleDarkTheme = () => {
         dispatch(toggleTheme())
