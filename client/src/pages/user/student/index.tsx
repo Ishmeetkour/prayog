@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { RootState } from "../../../redux/store";
 
 const Student = () => {
-  const {name,college,degree,speciality,about} = useSelector(state => state.user.details);
+  const {name,college,degree,speciality,about} = useSelector((state:RootState) => state.user.details);
   const navigate = useNavigate();
   return (
     <div className="py-10 min-h-screen bg-lightTheme-secondary text-lightTheme-text dark:bg-darkTheme-secondary dark:text-darkTheme-text">
