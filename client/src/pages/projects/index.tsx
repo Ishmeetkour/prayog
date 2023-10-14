@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,ChangeEvent } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import SearchResult from './features/SearchResult';
@@ -7,7 +7,7 @@ const Projects = () => {
 
   const [keyword, setKeyword] = useState('');
   const [typed, setTyped] = useState(false);
-  const handelSearchInput = (e) => {
+  const handelSearchInput = (e:ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value.trim()
     if (keyword.length > 0) {
       setTyped(true)

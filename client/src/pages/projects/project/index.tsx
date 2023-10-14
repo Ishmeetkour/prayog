@@ -1,23 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Loader from '../../../components/loader';
 function Project() {
-    const { id } = useParams();
-    const [projectData, setProjectData] = useState(null);
-
-    useEffect(() => {
-        // Simulate loading project data based on the id from the URL
-        fetchProjectData().then((data) => {
-            setProjectData(data);
-        });
-    }, [id]);
-
-    if (projectData === null) {
-        // Display a loading indicator while data is being fetched
-        return <Loader />;
-    }
-
-    // Render the project data once it's loaded
+    
     return (
         <div className='pt-5 px-10 md:px-20 min-h-screen bg-lightTheme-secondary text-lightTheme-text dark:bg-darkTheme-secondary dark:text-darkTheme-text'>
 
@@ -129,15 +111,4 @@ function Project() {
         </div>
     );
 }
-
-function fetchProjectData() {
-    // Simulate fetching project data from your database
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({ /* Your project data based on id */ });
-        }, 2000); // Simulate a 2-second delay
-    });
-}
-
-
 export default Project;

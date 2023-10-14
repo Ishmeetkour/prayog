@@ -1,7 +1,13 @@
 import './about.css'
 import { FiExternalLink } from 'react-icons/fi'
-import PropTypes from "prop-types";
-const FlipCard = (props) => {
+import { FC } from "react";
+interface Props{
+    name:string,
+    position?:string,
+    contribution:string,
+    connect:string
+}
+const FlipCard:FC<Props> = (props) => {
     return (
         <div className="card h-40 w-80 md:w-52">
             <div className="card-inner">
@@ -22,11 +28,5 @@ const FlipCard = (props) => {
             </div>
         </div>
     )
-}
-FlipCard.propTypes = {
-    name: PropTypes.string.isRequired,
-    connect: PropTypes.string.isRequired,
-    contribution: PropTypes.string.isRequired,
-    position: PropTypes.string
 }
 export default FlipCard

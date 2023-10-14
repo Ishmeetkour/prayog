@@ -21,34 +21,35 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Loader from './components/loader';
 import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 
 function App() {
-  const logged = useSelector(state => state.user.logged);
-  const type = useSelector(state => state.user.details.type);
+  const logged = useSelector((state:RootState) => state.user.logged);
+  const type = useSelector((state:RootState) => state.user.details.type);
   const profileRoute = logged ? (
     type === 'student'
-      ? <Route exact path="/profile"  >
+      ? <Route path="/profile"  >
 
-        <Route exact index={true} element={<Student />} />
-        <Route exact path="projects" element={<MyProjects />} />
-        <Route exact path="dashboard" element={<StudentDashboard />} />
+        <Route index={true} element={<Student />} />
+        <Route path="projects" element={<MyProjects />} />
+        <Route path="dashboard" element={<StudentDashboard />} />
 
       </Route>
-      : <Route exact path="/profile"  >
+      : <Route path="/profile"  >
 
-        <Route exact index={true} element={<Institute />} />
-        <Route exact path="workshops" element={<MyWorkshops />} />
-        <Route exact path="dashboard" element={<InstituteDashboard />} />
+        <Route index={true} element={<Institute />} />
+        <Route path="workshops" element={<MyWorkshops />} />
+        <Route path="dashboard" element={<InstituteDashboard />} />
 
       </Route>
   ) : null;
 
   const loginRoute = !logged ? (
-    <Route exact path="/auth/login" element={<Login />} />
+    <Route path="/auth/login" element={<Login />} />
   ) : null;
   const registerRoute = !logged ? (
-    <Route exact path="/auth/register" element={<Register />} />
+    <Route path="/auth/register" element={<Register />} />
   ) : null;
 
   return (
@@ -56,17 +57,17 @@ function App() {
       <Navbar />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/projects" element={<Projects />} />
-          <Route exact path="/workshops" element={<Workshops />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/workshops" element={<Workshops />} />
           {profileRoute}
           {loginRoute}
           {registerRoute}
-          <Route exact path="/projects/view" element={<ProjectsView />} />
-          <Route exact path="/workshops/view" element={<WorkshopsView />} />
-          <Route exact path="/projects/:id" element={<Project />} />
-          <Route exact path="/*" element={<NotFound />} />
+          <Route path="/projects/view" element={<ProjectsView />} />
+          <Route path="/workshops/view" element={<WorkshopsView />} />
+          <Route path="/projects/:id" element={<Project />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <Footer />
