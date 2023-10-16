@@ -28,9 +28,9 @@ const Student = () => {
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center justify-evenly">
-            <p className=" w-40 text-center border border-green-500 hover:bg-green-500 active:scale-95 px-2 py-1 rounded-md transition-colors">Add New Project</p>
-            <p className=" w-40 text-center border border-yellow-400 hover:bg-yellow-500 active:scale-95 px-2 py-1 rounded-md transition-colors">Edit Profile</p>
-            <p className=" w-40 text-center border border-red-500 hover:bg-red-500 active:scale-95 px-2 py-1 rounded-md transition-colors">Delete Account</p>
+            <Link to='add' className=" cursor-pointer w-40 text-center border border-green-500 hover:bg-green-500 active:scale-95 px-2 py-1 rounded-md transition-colors">Add New Project</Link>
+            <Link to='edit' className=" cursor-pointer w-40 text-center border border-yellow-400 hover:bg-yellow-500 active:scale-95 px-2 py-1 rounded-md transition-colors">Edit Profile</Link>
+            <p className=" cursor-pointer w-40 text-center border border-red-500 hover:bg-red-500 active:scale-95 px-2 py-1 rounded-md transition-colors">Delete Account</p>
           </div>
         </div>
       </section>

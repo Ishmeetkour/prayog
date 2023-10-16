@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 import { login } from "../../../redux/userSlice";
+import toast from 'react-hot-toast';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -11,8 +12,15 @@ const Login = () => {
 
   const handleLogin = () => {
     console.log("trying...")
-    dispatch(login({ email, password }))
-    navigate('/');
+    
+    toast.loading('Logging In');
+        setTimeout(() => {
+            toast.dismiss();
+            navigate('/');
+            dispatch(login({ email, password }))
+            toast.success("Logged In")
+        }, 3000);
+   
   };
 
   return (
