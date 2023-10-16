@@ -15,7 +15,7 @@ const View = () => {
         </div>
       </section>
       <section>
-        <div className='px-5 md:px-20 grid md:grid-cols-2 gap-3'>
+        <div className='px-5 md:px-20 grid lg:grid-cols-2 gap-3'>
           {Array.from({ length: 50 }, (_, i) => (
             <article
               onClick={() => navigate('/projects/qazwsxedc')}
@@ -33,9 +33,11 @@ const View = () => {
                     sensors, and programming to navigate and adapt to its environment independently, offering an engaging and
                     educational experience in robotics.
                   </p>
-                  <p className=""><small>Electronics</small></p>
-                  <p className=""><small>22-3-2023</small></p>
-                  <p className=""><small>{22} Views</small></p>
+                  <div className="pt-2 flex justify-evenly">
+                    <p className=""><small>Electronics</small></p>
+                    <p className=""><small>22-3-2023</small></p>
+                    <p className=""><small>{22} Views</small></p>
+                  </div>
                 </div>
               </div>
             </article>

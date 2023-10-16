@@ -10,18 +10,21 @@ const Workshops = lazy(() => import('./pages/workshops'));
 const ProjectsView = lazy(() => import('./pages/projects/view'));
 const WorkshopsView = lazy(() => import('./pages/workshops/view'));
 const Project = lazy(() => import('./pages/projects/project'));
-const MyProjects = lazy(() => import('./pages/user/student/projects'));
+const MyProjects = lazy(() => import('./pages/user/student/features/projects'));
 const Student = lazy(() => import('./pages/user/student'));
 const Institute = lazy(() => import('./pages/user/institute'));
 const NotFound = lazy(() => import('./components/not-found'));
 const MyWorkshops = lazy(() => import('./pages/user/institute/workshops'));
-const StudentDashboard = lazy(() => import('./pages/user/student/dashboard'));
+const StudentDashboard = lazy(() => import('./pages/user/student/features/dashboard'));
 const InstituteDashboard = lazy(() => import('./pages/user/institute/dashboard'));
+const AddProject = lazy(()=>import('./pages/user/student/features/add-project')) ;
+const EditProfile = lazy(()=>import('./pages/user/student/features/edit')) ;
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Loader from './components/loader';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -34,6 +37,8 @@ function App() {
         <Route index={true} element={<Student />} />
         <Route path="projects" element={<MyProjects />} />
         <Route path="dashboard" element={<StudentDashboard />} />
+        <Route path="add" element={<AddProject />} />
+        <Route path="edit" element={<EditProfile />} />
 
       </Route>
       : <Route path="/profile"  >
@@ -54,6 +59,7 @@ function App() {
 
   return (
     <BrowserRouter>
+     <Toaster/>
       <Navbar />
       <Suspense fallback={<Loader />}>
         <Routes>

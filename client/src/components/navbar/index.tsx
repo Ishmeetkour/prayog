@@ -5,15 +5,21 @@ import { toggleTheme } from "../../redux/themeSlice";
 import { useEffect, useState } from "react";
 import { logout } from "../../redux/userSlice";
 import { RootState } from "../../redux/store";
+import toast from "react-hot-toast";
 const Navbar = () => {
-    const darkTheme = useSelector((state:RootState) => state.theme.darkTheme);
-    const logged = useSelector((state:RootState) => state.user.logged)
+    const darkTheme = useSelector((state: RootState) => state.theme.darkTheme);
+    const logged = useSelector((state: RootState) => state.user.logged)
     const dispatch = useDispatch();
     const toggleDarkTheme = () => {
         dispatch(toggleTheme())
     }
     const handelLogout = () => {
-        dispatch(logout())
+        toast.loading('Logging Out');
+        setTimeout(() => {
+            toast.dismiss();
+            dispatch(logout())
+            toast.success("Logged Out")
+        }, 3000);
     }
 
     useEffect(() => {
