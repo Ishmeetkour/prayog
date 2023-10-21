@@ -1,6 +1,12 @@
 import {FaArrowRightLong} from 'react-icons/fa6';
 const Home = () => {
 
+
+  
+
+
+
+
   return (
     <div className="bg-lightTheme-secondary text-lightTheme-text dark:bg-darkTheme-secondary dark:text-darkTheme-text">
       <section className="grid md:grid-cols-2 pt-5 px-2">
