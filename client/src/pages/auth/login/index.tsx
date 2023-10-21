@@ -1,36 +1,73 @@
 // src/components/Login.js
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux"
-import { login } from "../../../redux/userSlice";
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { login, logout } from '../../../redux/userSlice';
 const Login = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const handleLogin = async () => {
 
-  const handleLogin = () => {
-    console.log("trying...")
-    
+    toast.dismiss();
+    const emailLength = email.length;
+    const passLength = password.length;
+
+    if (emailLength === 0) {
+      return toast.error('Email is required');
+    }
+    if (passLength === 0) {
+      return toast.error('Password is required');
+    }
     toast.loading('Logging In');
-        setTimeout(() => {
-            toast.dismiss();
-            navigate('/');
-            dispatch(login({ email, password }))
-            toast.success("Logged In")
-        }, 3000);
-   
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}auth/login`, {
+        mode: 'cors',
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      })
+      const data = await response.json();
+      if (data.success) {
+        sessionStorage.setItem('jwt', data.token)
+        const response = await fetch(import.meta.env.VITE_SERVER_URL + 'auth/get-details', {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": sessionStorage.getItem('jwt') || ''
+          },
+        })
+        const userData = await response.json();
+        if (userData.success) {
+          dispatch(login({ details: userData.details }))
+        }
+        if (!userData.validated) {
+          dispatch(logout());
+        }
+        toast.dismiss();
+        toast.success("Logged In")
+        navigate('/');
+      } else {
+        toast.dismiss();
+        toast.error(data.error)
+      }
+    } catch {
+      toast.error("Server Error")
+    }
   };
-
   return (
     <div className='min-h-screen grid lg:grid-cols-2 bg-lightTheme-secondary dark:bg-darkTheme-secondary dark:text-darkTheme-text'>
-      
+
       <div className='hidden lg:flex px-20'>
         <img className='' src="/svg/login.svg" alt="Logo" />
       </div>
 
-      <div className=" w-3/4 h-full mx-auto flex flex-col justify-center lg:justify-start lg:pt-40">
+      <form className=" w-3/4 h-full mx-auto flex flex-col justify-center lg:justify-start lg:pt-40" onSubmit={(e) => e.preventDefault()}>
         <h2 className="text-4xl font-semibold mb-4">Login</h2>
         <div className="mb-4">
           <label className="block text-sm font-bold mb-2" htmlFor="email">
@@ -43,6 +80,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
+            required={true}
           />
         </div>
         <div className="mb-6">
@@ -56,6 +94,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
+            required={true}
           />
         </div>
         <button
@@ -65,7 +104,7 @@ const Login = () => {
           Login
         </button>
         <p className='mt-3'>New to Prayog? <Link to='/auth/register'>Register</Link></p>
-      </div>
+      </form>
     </div>
   );
 };

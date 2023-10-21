@@ -1,16 +1,81 @@
 // src/components/Registration.js
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { login, logout } from '../../../redux/userSlice';
 
 const Register = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [college, setCollege] = useState('');
     const [degree, setDegree] = useState('');
-    const [rollNumber, setRollNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [rollNo, setRollNo] = useState('');
 
-    const handleRegistration = () => {
-        // Implement your registration logic here
+    const handleRegistration = async () => {
+        toast.remove();
+        if (name.length <= 3) {
+            return toast.error('Invalid Name')
+        }
+        if (email.length <= 3) {
+            return toast.error('Invalid Email')
+        }
+        if (college.length <= 3) {
+            return toast.error('Invalid AISHE Code')
+        }
+        if (!degree) {
+            return toast.error('Invalid Degree')
+        }
+        if (password.length <= 7) {
+            return toast.error('Invalid Password')
+        }
+        if (Number.isNaN(rollNo)) {
+            return toast.error('Invalid Roll Number')
+        }
+
+        toast.loading('Processing Request')
+        try{
+            const response = await fetch(import.meta.env.VITE_SERVER_URL + 'auth/register', {
+                mode: 'cors',
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, college, degree, password, rollNo })
+            })
+    
+            const data = await response.json();
+            if (data.success) {
+                sessionStorage.setItem('jwt', data.token)
+                const response = await fetch(import.meta.env.VITE_SERVER_URL + 'auth/get-details', {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": sessionStorage.getItem('jwt') || ''
+                    },
+                })
+                const userData = await response.json();
+                if (userData.success) {
+                    dispatch(login({ details: userData.details }))
+                }
+                if (!userData.validated) {
+                    dispatch(logout());
+                }
+                toast.dismiss();
+                toast.success("Logged In")
+                navigate('/');
+            }else{
+                toast.dismiss();
+                toast.error(data.error)
+            }
+        }catch{
+            toast.error('Server Error')
+        }
     };
 
     return (
@@ -20,7 +85,10 @@ const Register = () => {
                 <img className='' src="/svg/register.svg" alt="Logo" />
             </div>
 
-            <div className="w-3/4 h-full mx-auto flex flex-col justify-center lg:justify-start lg:pt-10">
+            <form
+                className="w-3/4 h-full mx-auto flex flex-col justify-center lg:justify-start lg:pt-5"
+                onSubmit={(e) => e.preventDefault()}
+            >
                 <h2 className="text-4xl font-semibold mb-4">Registration</h2>
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2" htmlFor="name">
@@ -36,15 +104,15 @@ const Register = () => {
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-sm font-bold mb-2" htmlFor="rollNumber">
+                    <label className="block text-sm font-bold mb-2" htmlFor="rollNo">
                         Roll Number
                     </label>
                     <input
                         className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
                         type="text"
-                        id="rollNumber"
-                        value={rollNumber}
-                        onChange={(e) => setRollNumber(e.target.value)}
+                        id="rollNo"
+                        value={rollNo}
+                        onChange={(e) => setRollNo(e.target.value)}
                         placeholder="Enter your roll number"
                     />
                 </div>
@@ -65,17 +133,14 @@ const Register = () => {
                     <label className="block text-sm font-bold mb-2" htmlFor="college">
                         College
                     </label>
-                    <select
+                    <input
                         className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
-                        id="college"
+                        type="text"
+                        id="text"
                         value={college}
                         onChange={(e) => setCollege(e.target.value)}
-                    >
-                        <option value="">Select your college</option>
-                        <option value="college1">College 1</option>
-                        <option value="college2">College 2</option>
-                        {/* Add more college options here */}
-                    </select>
+                        placeholder="Enter AISHE code of your institute"
+                    />
                 </div>
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2" htmlFor="degree">
@@ -88,10 +153,23 @@ const Register = () => {
                         onChange={(e) => setDegree(e.target.value)}
                     >
                         <option value="">Select your degree</option>
-                        <option value="undergraduate">Undergraduate</option>
-                        <option value="postgraduate">Postgraduate</option>
-                        <option value="diploma">Diploma</option>
+                        <option value="Under Graduate">Undergraduate</option>
+                        <option value="Post Graduate">Postgraduate</option>
+                        <option value="Diploma">Diploma</option>
                     </select>
+                </div>
+                <div className="mb-4">
+                    <label className="block text-sm font-bold mb-2" htmlFor="degree">
+                        Password
+                    </label>
+                    <input
+                        className="w-full text-black border rounded px-3 py-2 outline-none focus:border-blue-500"
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Case Sensitive"
+                    />
                 </div>
 
                 <button
@@ -101,7 +179,7 @@ const Register = () => {
                     Register
                 </button>
                 <p className='mt-3'>Already Registered? <Link to='/auth/login'>Login</Link></p>
-            </div>
+            </form>
         </div>
     );
 };

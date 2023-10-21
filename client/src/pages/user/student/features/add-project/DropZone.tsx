@@ -47,11 +47,6 @@ const DropZone = ({ className, group, maxFiles, filetype, files, setFiles }: Pro
 
             const filesWithPreview: FileWithPreview[] = validFiles.map(file => {
                 const reader = new FileReader()
-                reader.onload = () => {
-
-                    const binaryStr = reader.result
-                    console.log(binaryStr)
-                }
                 reader.readAsArrayBuffer(file)
 
                 const fileWithPreview = Object.assign(file, {

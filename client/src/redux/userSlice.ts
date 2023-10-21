@@ -3,26 +3,29 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        logged: false,
+        logged: Boolean(sessionStorage.getItem('jwt')),
+        type: '',
         details: {
-            type: 'student',
-            name: 'Divyanshu Naugai',
-            college: 'BTKIT Dwarahat',
-            degree:'Under Graduation',
-            speciality:'Electronics',
-            about:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero dicta reprehenderit libero consectetur, asperiores ea delectus omnis cupiditate accusantium, rem expedita aliquam quia? Consectetur eligendi eius libero at laudantium autem.'
+            id: '',
+            name: '',
+            college: '',
+            degree: '',
+            projects: 0
         }
     },
     reducers: {
-        login: (state, action) => {
-            const { email, password } = action.payload;
-            if (email === 'qaz@gmail.com') {
-                if (password === 'qwerty') {
-                    state.logged = true;
-                }
-            }
+        login: (state,actions) => {
+            state.logged = true;
+            const {details} = actions.payload
+            state.type = details.type;
+            state.details.id = details.id;
+            state.details.name = details.name;
+            state.details.college = details.college;
+            state.details.degree = details.degree;
+            state.details.projects = details.projects;
         },
         logout: (state) => {
+            sessionStorage.clear();
             state.logged = false;
         }
     }

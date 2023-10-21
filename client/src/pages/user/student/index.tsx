@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "../../../redux/store";
 
 const Student = () => {
-  const {name,college,degree,speciality,about} = useSelector((state:RootState) => state.user.details);
+  const {name,college,degree,projects} = useSelector((state:RootState) => state.user.details);
   const navigate = useNavigate();
   return (
     <div className="py-10 min-h-screen bg-lightTheme-secondary text-lightTheme-text dark:bg-darkTheme-secondary dark:text-darkTheme-text">
@@ -16,15 +16,14 @@ const Student = () => {
             </div>
             <div className="text-center md:text-start">
               <p>{name}</p>
-              <p>{college}t</p>
+              <p>{college}</p>
               <p>{degree}</p>
-              <p>{speciality}</p>
             </div>
           </div>
           <div className="px-3 text-center md:text-start">
-            <p className="text-xl text-center font-semibold underline underline-offset-2 ">About</p>
-            <p>
-              {about}
+            <p className="text-xl text-center font-semibold mb-3">Projects Uploaded</p>
+            <p className="text-center text-3xl">
+              {projects}
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center justify-evenly">
