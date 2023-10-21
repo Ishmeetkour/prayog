@@ -39,7 +39,7 @@ const Register = () => {
 
         toast.loading('Processing Request')
         try{
-            const response = await fetch(import.meta.env.VITE_SERVER_URL + 'auth/register', {
+            const response = await fetch(import.meta.env.SERVER_URL + 'auth/register', {
                 mode: 'cors',
                 method: 'POST',
                 headers: {
@@ -51,7 +51,7 @@ const Register = () => {
             const data = await response.json();
             if (data.success) {
                 sessionStorage.setItem('jwt', data.token)
-                const response = await fetch(import.meta.env.VITE_SERVER_URL + 'auth/get-details', {
+                const response = await fetch(import.meta.env.SERVER_URL + 'auth/get-details', {
                     method: "POST",
                     mode: "cors",
                     headers: {
@@ -74,6 +74,7 @@ const Register = () => {
                 toast.error(data.error)
             }
         }catch{
+            toast.dismiss();
             toast.error('Server Error')
         }
     };
