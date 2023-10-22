@@ -23,7 +23,7 @@ const Login = () => {
     }
     toast.loading('Logging In');
     try {
-      const response = await fetch(`${import.meta.env.SERVER_URL}auth/login`, {
+      const response = await fetch(`${process.env.SERVER_URL}auth/login`, {
         mode: 'cors',
         method: 'POST',
         headers: {
@@ -34,7 +34,7 @@ const Login = () => {
       const data = await response.json();
       if (data.success) {
         sessionStorage.setItem('jwt', data.token)
-        const response = await fetch(import.meta.env.SERVER_URL + 'auth/get-details', {
+        const response = await fetch(process.env.SERVER_URL + 'auth/get-details', {
           method: "POST",
           mode: "cors",
           headers: {

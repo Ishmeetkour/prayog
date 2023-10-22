@@ -15,8 +15,8 @@ const Register = () => {
     const [degree, setDegree] = useState('');
     const [password, setPassword] = useState('');
     const [rollNo, setRollNo] = useState('');
-
     const handleRegistration = async () => {
+        
         toast.remove();
         if (name.length <= 3) {
             return toast.error('Invalid Name')
@@ -36,10 +36,11 @@ const Register = () => {
         if (Number.isNaN(rollNo)) {
             return toast.error('Invalid Roll Number')
         }
+        
 
         toast.loading('Processing Request')
         try{
-            const response = await fetch(import.meta.env.SERVER_URL + 'auth/register', {
+            const response = await fetch(process.env.SERVER_URL + 'auth/register', {
                 mode: 'cors',
                 method: 'POST',
                 headers: {
@@ -51,7 +52,7 @@ const Register = () => {
             const data = await response.json();
             if (data.success) {
                 sessionStorage.setItem('jwt', data.token)
-                const response = await fetch(import.meta.env.SERVER_URL + 'auth/get-details', {
+                const response = await fetch(process.env.SERVER_URL + 'auth/get-details', {
                     method: "POST",
                     mode: "cors",
                     headers: {

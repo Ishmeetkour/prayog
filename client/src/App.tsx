@@ -62,9 +62,10 @@ function App() {
 
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(process.env.SERVER_URL)
     const setSession = async () => {
       try {
-        const response = await fetch(import.meta.env.SERVER_URL + 'auth/get-details', {
+        const response = await fetch(process.env.SERVER_URL + 'auth/get-details', {
           method: "POST",
           mode: "cors",
           headers: {
